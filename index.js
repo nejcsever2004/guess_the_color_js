@@ -103,7 +103,3 @@ function makeColor() {
 	var b = Math.floor(Math.random() * 256);
 	return "rgb(" + r + ", " + g + ", " + b + ")"; 
 }
-
-
-
-
