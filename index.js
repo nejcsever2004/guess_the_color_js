@@ -8,19 +8,19 @@ var messageDisplay = document.querySelector("#message");
 var h1 = document.querySelector("h1");
 var resetButton = document.querySelector("#reset");
 var modeButtons = document.querySelectorAll(".mode");
-var easyButton = document.querySelector("#easy");
+var easyButton = document.querySelector(".mode");
 
 init();
 
 function init() {
-    colorDisplay.textContent = pickedColor;
-    setupSquares();
-    setupMode();
-    reset();
+	colorDisplay.textContent = pickedColor;
+	setupSquares();
+	setupMode();
+	reset();
 }
 
 resetButton.addEventListener("click", function() {
-    reset();
+	reset();
 });
 
 function setupSquares() {
@@ -60,46 +60,50 @@ function setupMode() {
 }
 
 function reset() {
-    colors = genRnadomColors(numSquares);
-    pickedColor = chooseColor();
-    colorDisplay.textContent = pickedColor;
-    h1.style.backgroundColor = "#2C8E99";
-    resetButton.textContent = "New Colors";
-    messageDisplay.textContent = "";
-    for (var i = 0; i < squares.length; i++) {
-        if(colors[i]){
-            squares[i].style.display = "block";
-            squares[i].style.backgroundColor = colors[i];
-        }
-        else {
-            squares[i].style.display = "none";
-        }
-    }
+	colors = genRandomColors(numSquares);
+	pickedColor = chooseColor();
+	colorDisplay.textContent = pickedColor;
+	h1.style.backgroundColor = "#2C8E99";
+	resetButton.textContent = "New Colors";
+	messageDisplay.textContent = "";
+	for (var i = 0; i < squares.length; i++) {
+		if(colors[i]) { 
+			squares[i].style.display = "block";
+			squares[i].style.backgroundColor = colors[i];
+		}
+		else {
+			squares[i].style.display = "none";
+		}
+	}
 }
 
 function changeColors(color) {
-    for (var i = 0; i < squares.length; i++) {
-        squares[i].style.backgroundColor = pickedColor;
-    }
-    h1.style.backgroundColor = pickedColor;
+	for(var i = 0; i < squares.length; i++) {
+		squares[i].style.backgroundColor = color;
+		h1.style.backgroundColor = color;
+	}
 }
 
 function chooseColor() {
-    var random = Math.floor(Math.random() * colors.length);
-    return colors[random];
+	var random = Math.floor(Math.random() * colors.length);
+	return colors[random];
 }
 
-function genRnadomColors(num) {
-    var arr = [];
-    for (var i = 0; i < num; i++) {
-        arr.push(randomColor());
-    }
-    return arr;
+function genRandomColors(num) {
+	var arr = [];
+	for (var i = 0; i < num; i++) {
+		arr.push(makeColor());
+	}
+	return arr;
 }
 
 function makeColor() {
-    var r = Math.floor(Math.random() * 256);
-    var g = Math.floor(Math.random() * 256);
-    var b= Math.floor(Math.random() * 256);
-    return "rgb(" + r + ", " + g + ", " + b + ")";
+	var r = Math.floor(Math.random() * 256);
+	var g = Math.floor(Math.random() * 256);
+	var b = Math.floor(Math.random() * 256);
+	return "rgb(" + r + ", " + g + ", " + b + ")"; 
 }
+
+
+
+
